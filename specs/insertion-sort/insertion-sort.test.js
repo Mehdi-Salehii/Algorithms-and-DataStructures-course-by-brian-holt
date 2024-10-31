@@ -14,13 +14,25 @@
 */
 
 function insertionSort(nums) {
-  nums.forEach((num, i) => {});
+  nums.forEach((_, i) => {
+    const sample = nums.slice(0, i + 1);
+
+    for (let j = sample.length - 1; j >= 1; j--) {
+      const current = nums[j];
+      const before = nums[j - 1];
+      if (current < before) {
+        nums[j] = before;
+        nums[j - 1] = current;
+      }
+    }
+  });
+  return nums;
 }
 
 // unit tests
 // do not modify the below code
 test("insertion sort", function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
-  insertionSort(nums);
-  expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  const sortedNums = insertionSort(nums);
+  expect(sortedNums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 });
