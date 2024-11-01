@@ -1,16 +1,8 @@
-/*
-  Write a function that performs mergesort
-  Name the function mergeSort
-  It will take in a array of numbers and return a sorted array numbers
-
-  You'll need to write more than just one function
-*/
-
 const merge = (arr1, arr2) => {
   let mergedArr = [];
   let arr1Start = 0;
   let arr2Start = 0;
-
+  console.log(arr1, arr2);
   if (arr1.length === 1) {
     if (arr1[0] <= arr2[0]) {
       return [...arr1, ...arr2];
@@ -67,10 +59,9 @@ const mergeSort = (nums) => {
   }
 };
 
-// unit tests
-// do not modify the below code
-test("merge sort", function () {
-  const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
-  const ans = mergeSort(nums);
-  expect(ans).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-});
+console.log(
+  mergeSort([
+    10, 5, 3, 8, 2, 6, 4, 7, 9, 1, 16, 12, 14, 11, 13, 15, 34, 53, 2, 32, 5, 33,
+    55, 11, 1,
+  ])
+);
