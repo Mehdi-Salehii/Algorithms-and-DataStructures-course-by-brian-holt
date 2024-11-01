@@ -9,7 +9,19 @@
  
  */
 
-function nestedAdd(array) {}
+function nestedAdd(array) {
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    const el = array[i];
+
+    if (Number.isFinite(el)) {
+      sum += el;
+    } else if (Array.isArray(el)) {
+      sum += nestedAdd(el);
+    }
+  }
+  return sum;
+}
 
 test("nested arrays addition", () => {
   expect(nestedAdd([1, 2, 3])).toEqual(6);
