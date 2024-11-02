@@ -12,13 +12,11 @@
 
 */
 
-function quickSort(nums) {
-  // code goes here
-}
+function quickSort(nums) {}
 
 // unit tests
 // do not modify the below code
-test.skip("quickSort", function () {
+test("quickSort", function () {
   const input = [10, 8, 2, 1, 6, 3, 9, 4, 7, 5];
   const answer = quickSort(input);
 
