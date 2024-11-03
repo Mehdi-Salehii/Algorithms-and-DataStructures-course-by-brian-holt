@@ -7,7 +7,31 @@ function linearSearch(id, array) {
   // code goes here
 }
 
-function binarySearch(id, array) {}
+function binarySearch(id, array) {
+  let result = undefined;
+  let currentArr = array;
+
+  while (!result) {
+    const index =
+      (currentArr.length / 2) % 1 === 0
+        ? currentArr.length / 2
+        : Math.floor(currentArr.length / 2) + 1;
+    const currentObject = currentArr[index];
+
+    if (currentArr.length === 1) {
+      const curObj = currentArr[0];
+      return curObj.id === id ? curObj : "Not found";
+    }
+    if (currentObject.id === id) {
+      result = currentObject;
+      return result;
+    } else if (currentObject.id > id) {
+      currentArr = currentArr.slice(0, index);
+    } else {
+      currentArr = currentArr.slice(index + 1);
+    }
+  }
+}
 
 // unit tests
 // do not modify the below code
