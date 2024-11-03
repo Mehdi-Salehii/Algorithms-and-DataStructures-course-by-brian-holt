@@ -10,26 +10,23 @@
 */
 
 function radixSort(arr) {
-  let max = arr[0];
+  let longestNumberLength = arr[0].toString().length;
   for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > max) max = arr[i];
+    const currentLength = arr[i].toString().length;
+    longestNumberLength =
+      currentLength > longestNumberLength ? currentLength : longestNumberLength;
   }
-  const buckets = Math.floor(Math.log10(max));
-  for (let i = 0; i <= buckets; i++) {
-    if (i === 0) {
-      arr.sort((a, b) => (a % 10) - (b % 10));
-    } else if (i === buckets) {
-      arr.sort(
-        (a, b) => Math.floor(a / 10 ** buckets) - Math.floor(b / 10 ** buckets)
-      );
-    } else {
-      arr.sort((a, b) => {
-        return (
-          (a % 10 ** (i + 1)) -
-          (a % 10 ** (i - 1)) -
-          ((b % 10 ** (i + 1)) - (b % 10 ** (i - 1)))
-        );
-      });
+  const buckets = new Array(10).fill().map(() => []);
+  for (let i = 1; i <= longestNumberLength; i++) {
+    while (arr.length) {
+      const currentNumber = arr.pop();
+      const digit = +currentNumber.toString().at(-i) || 0;
+      buckets[digit].push(currentNumber);
+    }
+    for (let j = 0; j < 10; j++) {
+      while (buckets[j].length) {
+        arr.push(buckets[j].pop());
+      }
     }
   }
   return arr;
