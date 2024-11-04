@@ -17,7 +17,31 @@
   you work
 */
 
-class ArrayList {}
+class ArrayList {
+  length = Object.keys(this).length;
+  pop() {
+    const value = this[this.length - 1];
+    delete this[this.length - 1];
+    this.length--;
+    return value;
+  }
+  push(item) {
+    this[this.length] = item;
+    this.length++;
+  }
+  get(index) {
+    return this[index];
+  }
+  delete(index) {
+    const value = this[index];
+
+    for (let i = index; i < this.length - 1; i++) {
+      this[i] = this[i + 1];
+    }
+    this.length--;
+    return value;
+  }
+}
 
 // unit tests
 // do not modify the below code
