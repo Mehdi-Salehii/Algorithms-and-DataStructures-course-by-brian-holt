@@ -23,9 +23,55 @@
   you work
 */
 
-class LinkedList {}
+class LinkedList {
+  head = null;
+  tail = null;
+  length = 0;
 
-class Node {}
+  push(value) {
+    const node = new Node(value);
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+    }
+    this.tail = node;
+    this.length++;
+  }
+  _find(index) {
+    let current = this.head;
+    for (let i = 1; i <= index; i++) {
+      current = current.next;
+    }
+    return current;
+  }
+  delete(index) {
+    const current = this._find(index);
+    const next = this._find(index + 1);
+    const prev = this._find(index - 1);
+    if (index > 0) {
+      prev.next = next;
+    } else if (index === 0) {
+      this.head = next;
+    }
+    this.length--;
+    return current.value;
+  }
+  pop() {
+    return this.delete(this.length - 1);
+  }
+  get(index) {
+    return this._find(index).value;
+  }
+}
+
+class Node {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
 
 // unit tests
 // do not modify the below code
