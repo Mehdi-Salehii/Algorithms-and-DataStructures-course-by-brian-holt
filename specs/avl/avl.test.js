@@ -22,16 +22,16 @@
 */
 
 class Tree {
-  // code goes here
+  //
 }
 
 class Node {
-  // code also goes here
+  //
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("AVL Tree", function () {
+describe("AVL Tree", function () {
   test("creates a correct tree", () => {
     const nums = [3, 7, 4, 6, 5, 1, 10, 2, 9, 8];
     const tree = new Tree();
