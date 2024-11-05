@@ -16,7 +16,36 @@ right - Node/object - the right node which itself may be another tree
 
 */
 
-class Tree {}
+class Tree {
+  right = null;
+  left = null;
+  constructor(value = null) {
+    this.value = value;
+  }
+  add(value) {
+    let current = this;
+
+    if (!current.value) {
+      current.value = value;
+    } else {
+      if (value >= current.value) {
+        if (!current.right) {
+          current.right = new Tree(value);
+          return;
+        }
+        current = current.right;
+        current.add(value);
+      } else {
+        if (!current.left) {
+          current.left = new Tree(value);
+          return;
+        }
+        current = current.left;
+        current.add(value);
+      }
+    }
+  }
+}
 
 // unit tests
 // do not modify the below code
